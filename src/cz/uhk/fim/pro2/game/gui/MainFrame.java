@@ -8,6 +8,8 @@ public class MainFrame extends JFrame {
 	public static final int HEIGHT = 800;
 	
 	
+	protected Screen actualScreen;
+	
 
 	public MainFrame(){
 		setSize(WIDTH,HEIGHT);
@@ -16,9 +18,20 @@ public class MainFrame extends JFrame {
 		setTitle("Flappy Bird");
 		setResizable(false);//nejde menit velikost okna
 		
+	}
+	
+	
+	public void setScreen(Screen screen){
+	if(actualScreen !=null){
+		remove(actualScreen);
+	}
+		add(screen); //pøidá novou screen
+		actualScreen = screen;
+		revalidate();   //refres //zmenilo se okno a ono se prekresli
 		
 		
 	}
+	
 	
 	
 }
