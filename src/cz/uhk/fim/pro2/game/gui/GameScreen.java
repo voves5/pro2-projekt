@@ -7,11 +7,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import cz.uhk.fim.pro2.game.model.Bird;
+import cz.uhk.fim.pro2.game.model.Heart;
+import cz.uhk.fim.pro2.game.model.Tube;
+import cz.uhk.fim.pro2.game.model.World;
+
 public class GameScreen extends Screen {
 
 	public GameScreen(MainFrame mainFrame) {
 		super(mainFrame);
-		// TODO Auto-generated constructor stub
 		
 		
 		JButton jButtonBack = new JButton("Back");
@@ -39,6 +43,31 @@ public class GameScreen extends Screen {
 		add(jButtonBack);
 		add(jButtonPause);
 		
-	}
-
+		
+		
+		
+		
+		
+		//WORLD
+		Bird bird = new Bird("Jakub",240,400);
+		World world = new World(bird);
+		world.addTubes(new Tube(400,400,Color.green));
+		world.addTubes(new Tube(600,300,Color.green));
+		world.addTubes(new Tube(800,500,Color.green));
+		
+		world.addHeart(new Heart(500, 450));
+		world.addHeart(new Heart(700, 600));
+		
+		
+		
+		GameCanvas gameCanvas = new GameCanvas(world);
+		gameCanvas.setBounds(0,0,MainFrame.WIDTH,MainFrame.HEIGHT);
+		add(gameCanvas);
+		
+		
+		
+			
+		}
+	
+	
 }
