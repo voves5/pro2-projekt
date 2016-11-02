@@ -8,8 +8,59 @@ public class Bird {
 	
 	
 	//kostuktor a gettery a settery
+	public Bird(String name, float positionX, float positionY){
+		super();
+		this.name= name;
+		this.positionX = positionX;
+		this.positionY = positionY;
+		speed = 0;
+		lives = 3;
+		
+	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public float getPositionX(){
+		return positionX;
+	}
+	
+
 	
 	
+	public float getPositionY() {
+		return positionY;
+	}
+
+	public void setPositionY(float positionY) {
+		this.positionY = positionY;
+	}
+
+	public float getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(float speed) {
+		this.speed = speed;
+	}
+
+	public int getLives() {
+		return lives;
+	}
+
+	public void setLives(int lives) {
+		this.lives = lives;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPositionX(float positionX) {
+		this.positionX = positionX;
+	}
+
 	public void goUp(){
 		
 	}
