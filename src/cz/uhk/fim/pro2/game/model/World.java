@@ -8,6 +8,7 @@ public class World {
 	private Bird bird;
 	private List<Tube> tubes;
 	private List<Heart> hearts;
+	public static final int SPEED = 100;
 	
 	public World(Bird bird){
 		this.bird = bird;
@@ -16,11 +17,16 @@ public class World {
 	}
 	
 	
-	
+	public void  update(float deltaTime){
+		bird.update(deltaTime);
+		
+	}
 	
 	public Bird getBird() {
 		return bird;
 	}
+	
+	
 
 
 
