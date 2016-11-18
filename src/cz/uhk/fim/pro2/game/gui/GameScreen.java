@@ -54,7 +54,7 @@ public class GameScreen extends Screen {
 		add(jButtonBack);
 		
 		//WORLD	
-		Bird bird = new Bird("Pavel", 240, 400);
+		Bird bird = new Bird("Jakub", 240, 400);
 		
 		World world = new World(bird);
 		world.addTubes(new Tube(400, 400, Color.green));
@@ -65,8 +65,18 @@ public class GameScreen extends Screen {
 		world.addHeart(new Heart(700, 600));
 		
 		GameCanvas gamecanvas = new GameCanvas(world);
-		add(gamecanvas);
 		gamecanvas.setBounds(0, 0, MainFrame.WIDTH, MainFrame.HEIGHT);
+		
+		gamecanvas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				super.mousePressed(e);
+				bird.goUp();
+			}
+		});
+		
+		add(gamecanvas);
+
 
 		timer = new Timer(20, new ActionListener() {
 			
@@ -84,5 +94,23 @@ public class GameScreen extends Screen {
 		
 		lastTimeMillis = System.currentTimeMillis();
 		timer.start();
+	}
+
+	@Override
+	public void crashTube(Tube tube) {
+		System.out.println("Narazil");
+		
+	}
+
+	@Override
+	public void catchHeart(Heart heart) {
+		System.out.println("Sebral srdce");
+		
+	}
+
+	@Override
+	public void outOf() {
+		System.out.println("je mimo");
+		
 	}
 }

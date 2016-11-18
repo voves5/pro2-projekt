@@ -5,51 +5,79 @@ import java.awt.Graphics;
 
 public class Bird {
 	private String name;
-	private float positionX,positionY;
+	private float positionX, positionY;
 	private float speed;
 	private int lives;
-	
-	
-	//kostuktor a gettery a settery
-	public Bird(String name, float positionX, float positionY){
+	private static final int GRAVITY = 400;
+	private static final int JUMP = 650;
+
+	// kostuktor a gettery a settery
+	public Bird(String name, float positionX, float positionY) {
 		super();
-		this.name= name;
+		this.name = name;
 		this.positionX = positionX;
 		this.positionY = positionY;
 		speed = 0;
 		lives = 3;
-		
+
 	}
-	
-	public void paint(Graphics g){
-		g.setColor(Color.blue);
-		g.fillRect(
-				(int)(getPositionX()) - 25,
-				(int)(getPositionY()) - 25,
-				50,
-				50
-				);
-		
-		
+
+	public void paint(Graphics g) {
+		g.setColor(Color.BLUE);
+		Rectangle rectangle = getRectangle();
+
+		g.fillRect((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(),
+				(int) rectangle.getHeight());
 	}
-	
-	public void update(float deltaTime){
-		positionX += World.SPEED * deltaTime;
-		
-		
+
+	// vraáti souøadnice ke kolizím
+	public Rectangle getRectangle() {
+		return new Rectangle((int) (getPositionX() - 25), (int) getPositionY() - 25, 50, 50);
 	}
-	
-	public String getName(){
+
+	// rozpohybuj ptaka
+	public void update(float deltaTime) {
+		positionY -= speed * deltaTime;
+		positionY += GRAVITY * deltaTime;
+		speed -= speed * deltaTime;
+	}
+
+	// naraz do trubky
+	public Boolean collideWith(Tube tube) {
+		Rectangle rectangle = getRectangle();
+
+		return rectangle.intersects(tube.getBottomRectangle()) || rectangle.intersects(tube.getTopRectangle());
+	}
+
+	// kolize se srdce
+	public Boolean collideWith(Heart heart) {
+		return getRectangle().intersects(heart.getRectangle());
+	}
+
+	// naraz do zeme
+	public Boolean isOutOf() {
+		Rectangle rectangle = getRectangle();
+
+		if (rectangle.getMinX() < 0 || rectangle.getMinY() < 0) {
+			return true;
+		}
+
+		if (rectangle.getMaxX() > MainFrame.WIDTH || rectangle.getMaxY() > MainFrame.HEIGHT) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	public String getName() {
 		return name;
 	}
-	
-	public float getPositionX(){
+
+	public float getPositionX() {
 		return positionX;
 	}
-	
 
-	
-	
 	public float getPositionY() {
 		return positionY;
 	}
@@ -82,26 +110,24 @@ public class Bird {
 		this.positionX = positionX;
 	}
 
-	public void goUp(){
-		
+	public void goUp() {
+
 	}
-	
-	public void catchHeart(){
-		
+
+	public void catchHeart() {
+
 	}
-	
-	public void die(){
-		
+
+	public void die() {
+
 	}
-	
-	
-	public void addLive(){
-		
+
+	public void addLive() {
+
 	}
-	
-	public void removeLive(){
-		
-		
+
+	public void removeLive() {
+
 	}
 
 }
