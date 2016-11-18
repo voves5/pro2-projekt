@@ -2,6 +2,7 @@ package cz.uhk.fim.pro2.game.model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import cz.uhk.fim.pro2.game.gui.MainFrame;
 

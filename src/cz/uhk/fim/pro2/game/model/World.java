@@ -2,13 +2,16 @@ package cz.uhk.fim.pro2.game.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import cz.uhk.fim.pro2.interfaces.*;
 
 public class World {
 
 	private Bird bird;
 	private List<Tube> tubes;
 	private List<Heart> hearts;
+	private WorldListener worldListener;
 	public static final int SPEED = 100;
+	
 
 	public World(Bird bird) {
 		this.bird = bird;
