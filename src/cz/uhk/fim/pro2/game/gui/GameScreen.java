@@ -21,6 +21,7 @@ public class GameScreen extends Screen implements WorldListener {
 	
 	private long lastTimeMillis;
 	private Timer timer;
+	private Bird bird;
 
 	public GameScreen(MainFrame mainFrame) {
 		super(mainFrame);
@@ -30,7 +31,8 @@ public class GameScreen extends Screen implements WorldListener {
 		
 		jButtonBack.addActionListener(new ActionListener() {			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{	timer.stop();
 				mainFrame.setScreen(new HomeScreen(mainFrame));
 			}
 		});
@@ -57,7 +59,7 @@ public class GameScreen extends Screen implements WorldListener {
 		add(jButtonBack);
 		
 		//WORLD	
-		Bird bird = new Bird("Jakub", 240, 400);
+		 bird = new Bird("Jakub", 240, 400);
 		
 		World world = new World(bird);
 		world.addTubes(new Tube(400, 400, Color.green));
@@ -106,7 +108,9 @@ public class GameScreen extends Screen implements WorldListener {
 
 	@Override
 	public void catchHeart(Heart heart) {
-		System.out.println("získal srdce");
+		bird.catcHeart();
+		System.out.println("ZIVOTY:" + bird.getLifes());
+		heart.setPositionY(-100);
 		
 	}
 

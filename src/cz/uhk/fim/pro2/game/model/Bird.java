@@ -11,9 +11,12 @@ public class Bird {
 	private String name;
 	private float positionX, positionY;
 	private float speed;
-	private int lives;
+	private int lifes;
+	private int score;
 	private static final int GRAVITY = 400;
 	private static final int JUMP = 650;
+	public static final int DEFAULT_SCORE =0;
+	public static final int DEFAULT_LIFES =3;
 
 	// kostuktor a gettery a settery
 	public Bird(String name, float positionX, float positionY) {
@@ -22,7 +25,8 @@ public class Bird {
 		this.positionX = positionX;
 		this.positionY = positionY;
 		speed = 0;
-		lives = 3;
+		lifes =DEFAULT_LIFES;
+		score = DEFAULT_SCORE;
 
 	}
 
@@ -34,7 +38,7 @@ public class Bird {
 				(int) rectangle.getHeight());
 	}
 
-	// vraáti souøadnice ke kolizím
+	// vraï¿½ti souï¿½adnice ke kolizï¿½m
 	public Rectangle getRectangle() {
 		return new Rectangle((int) (getPositionX() - 25), (int) getPositionY() - 25, 50, 50);
 	}
@@ -98,12 +102,12 @@ public class Bird {
 		this.speed = speed;
 	}
 
-	public int getLives() {
-		return lives;
+	public int getLifes() {
+		return lifes;
 	}
 
-	public void setLives(int lives) {
-		this.lives = lives;
+	public void setLifes(int lives) {
+		this.lifes = lifes;
 	}
 
 	public void setName(String name) {
@@ -118,20 +122,28 @@ public class Bird {
 
 	}
 
-	public void catchHeart() {
+
+	public void addPoint(){
+		score++;
+	}
+	public int getScore(){
+		return score;
+	}
+	public void setScore(int score){
+		this.score = score;
+	}
+	public void catchHeart(){
+		lifes++;
+	}
+	public void die(){
 
 	}
-
-	public void die() {
-
-	}
-
-	public void addLive() {
+	public void addLive(){
 
 	}
-
-	public void removeLive() {
-
+	public void removeLive(){
+		lifes--;
 	}
+
 
 }
