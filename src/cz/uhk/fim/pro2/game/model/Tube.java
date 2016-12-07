@@ -14,7 +14,7 @@ public class Tube {
 	private static final int GAP = 200;
 
 	public Tube(float positionX, float height, Color color) {
-		super(); // od niciho nededi,volá se konstuktor Objectu
+		super(); // od niciho nededi,volï¿½ se konstuktor Objectu
 		this.positionX = positionX;
 		this.height = height;
 		this.color = color;
@@ -39,7 +39,9 @@ public class Tube {
 	public Rectangle getBottomRectangle() {
 		return new Rectangle((int) (getPositionX()) - 25, 0, 50, (int) (height - GAP));
 	}
-
+ public int getCenterY(){
+	 retunr (int)(height-(GAP/2.0));
+ }
 	public float getPositionX() {
 		return positionX;
 	}
