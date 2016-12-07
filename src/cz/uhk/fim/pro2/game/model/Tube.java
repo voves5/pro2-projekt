@@ -40,7 +40,7 @@ public class Tube {
 		return new Rectangle((int) (getPositionX()) - 25, 0, 50, (int) (height - GAP));
 	}
  public int getCenterY(){
-	 retunr (int)(height-(GAP/2.0));
+	 return (int)(height-(GAP/2.0));
  }
 	public float getPositionX() {
 		return positionX;

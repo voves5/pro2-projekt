@@ -110,7 +110,7 @@ public class GameScreen extends Screen implements WorldListener {
 
 	@Override
 	public void catchHeart(Heart heart) {
-		bird.catcHeart();
+		bird.catchHeart();
 		System.out.println("ZIVOTY:" + bird.getLifes());
 		heart.setPositionY(-100);
 		
