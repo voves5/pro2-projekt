@@ -10,6 +10,7 @@ public class Tube {
     private float positionX;
     private float height;
     private Color color;
+    private boolean counted = false;
 
     private static final int GAP = 200;
     private static final int WIDTH = 50;
@@ -90,6 +91,14 @@ public class Tube {
 
     public int getMaxX() {
         return (int) positionX + (WIDTH / 2);
+    }
+
+    public boolean isCounted() {
+        return counted;
+    }
+
+    public void setCounted(boolean counted) {
+        this.counted = counted;
     }
 
 

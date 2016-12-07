@@ -14,7 +14,7 @@ public class Bird {
 	private int lifes;
 	private int score;
 	private static final int GRAVITY = 400;
-	private static final int JUMP = 650;
+	public static final int JUMP = 650;
 	public static final int DEFAULT_SCORE =0;
 	public static final int DEFAULT_LIFES =3;
 
@@ -24,7 +24,7 @@ public class Bird {
 		this.name = name;
 		this.positionX = positionX;
 		this.positionY = positionY;
-		speed = 0;
+		speed = JUMP/2;
 		lifes =DEFAULT_LIFES;
 		score = DEFAULT_SCORE;
 
@@ -121,6 +121,10 @@ public class Bird {
 	public void goUp() {
 
 	}
+
+	public boolean isAlive(){
+		return lifes>0;
+		}
 
 
 	public void addPoint(){

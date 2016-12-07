@@ -33,10 +33,20 @@ public class World {
 			}
 		}
 
-		for (Tube tube : tubes) {
+		for(Tube tube: tubes){
 			tube.update(deltaTime);
-			if (bird.collideWith(tube)) {
+			if(bird.collideWith(tube)){
+				+				tube.setCounted(true);
 				worldListener.crashTube(tube);
+			} else{
+
+				if(bird.getPositionX()> tube.getMinX() &&
+						bird.getPositionX()< tube.getMaxX()
+						){if(!tube.isCounted()){
+					bird.addPoint();
+					tube.setCounted(true);
+				}
+				}
 			}
 		}
 	}
