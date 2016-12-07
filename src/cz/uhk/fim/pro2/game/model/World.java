@@ -19,8 +19,6 @@ public class World {
 		hearts = new ArrayList<>();
 	}
 
-	// má na starost pohyb, metodu voláme u Bird,Tube,Heart, foreach - voláme
-	// pro kažný objekt
 	public void update(float deltaTime) {
 		bird.update(deltaTime);
 
