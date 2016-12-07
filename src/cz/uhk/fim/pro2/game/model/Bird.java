@@ -13,8 +13,8 @@ public class Bird {
 	private float speed;
 	private int lifes;
 	private int score;
-	private static final int GRAVITY = 400;
-	public static final int JUMP = 650;
+	private static final int GRAVITY = 500;
+	public static final int JUMP = 950;
 	public static final int DEFAULT_SCORE =0;
 	public static final int DEFAULT_LIFES =3;
 
@@ -66,15 +66,9 @@ public class Bird {
 	public Boolean isOutOf() {
 		Rectangle rectangle = getRectangle();
 
-		if (rectangle.getMinX() < 0 || rectangle.getMinY() < 0) {
-			return true;
-		}
-
-		if (rectangle.getMaxX() > MainFrame.WIDTH || rectangle.getMaxY() > MainFrame.HEIGHT) {
-			return true;
-		} else {
-			return false;
-		}
+		int upLimit = GameCanvas.UP_BOUND;
+		int downLimit = MainFrame.HEIGHT - GameCanvas.DOWN_BOUND;
+		return rectangle.getMinY() <upLimit || rectangle.getMaxY()>downLimit;
 
 	}
 

@@ -3,6 +3,7 @@ package cz.uhk.fim.pro2.game.model;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Random;
 
 import cz.uhk.fim.pro2.game.gui.MainFrame;
 
@@ -13,7 +14,7 @@ public class Tube {
     private boolean counted = false;
 
     private static final int GAP = 200;
-    private static final int WIDTH = 50;
+    private static final int WIDTH = 70;
 
     public Tube(float positionX, float height, Color color) {
         super(); // od niciho nededi,vol� se konstuktor Objectu
@@ -51,6 +52,11 @@ public class Tube {
                 WIDTH,
                 (int) (height - GAP));
     }
+    public static float getRandomHeight(){
+
+        return (new Random().nextFloat()*450 + 250);
+        	}
+
 
     public int getCenterY() {
         return (int) (height - (GAP / 2.0));

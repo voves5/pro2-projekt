@@ -51,11 +51,11 @@ public class HomeScreen extends Screen {
 		 jLableNadpis.setFont(new Font("Arial",Font.BOLD,40));
 		 
 		 //nastaveni velikost a pozici
-		 	jLableNadpis.setBounds(0,0,280,50);
-		 	jButtonPlay.setBounds(100,400,280,50);
-		 	jButtonScore.setBounds(100,460,280,50);
-		 	jButtonSound.setBounds(100,520,280,50);
-		 
+		 	jLableNadpis.setBounds(150, 150, 400,50);
+		 	jButtonPlay.setBounds(100, 400, 280, 50);
+		 	jButtonScore.setBounds(100, 520, 280, 50);
+		jButtonSound.setBounds(100, 460, 280, 50);
+
 		 
 		 
 		 

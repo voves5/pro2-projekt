@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.Timer;
 
+import cz.uhk.fim.pro2.game.model.Ground;
+
 import cz.uhk.fim.pro2.game.model.Bird;
 import cz.uhk.fim.pro2.game.model.Heart;
 import cz.uhk.fim.pro2.game.model.Tube;
@@ -50,9 +52,9 @@ public class GameScreen extends Screen implements WorldListener {
             }
         });
 
-        jButtonBack.setBounds(20, 20, 60, 60);
+        jButtonBack.setBounds(320, 10, 60, 30);
         jButtonBack.setFont(new Font("Arial", Font.PLAIN, 8));
-        jButtonPause.setBounds(400, 20, 60, 60);
+        jButtonPause.setBounds(400, 10, 60, 30);
         jButtonPause.setFont(new Font("Arial", Font.PLAIN, 8));
 
         add(jButtonPause);
@@ -61,8 +63,15 @@ public class GameScreen extends Screen implements WorldListener {
         jLabelScore = new JLabel("Score: " + Bird.DEFAULT_SCORE);
         jLabelLifes = new JLabel("Životy: " + Bird.DEFAULT_LIFES);
 
-        jLabelLifes.setBounds(260, 20, 120, 60);
-        jLabelScore.setBounds(100, 20, 120, 60);
+
+        jLabelScore.setBackground(Color.orange);
+        jLabelScore.setOpaque(true);
+        jLabelLifes.setOpaque(true);
+        jLabelLifes.setBackground(Color.orange);
+
+        jLabelScore.setBounds(20, 10, 80, 30);
+        jLabelLifes.setBounds(100, 10, 80, 30);
+
         add(jLabelLifes);
         add(jLabelScore);
 
@@ -70,12 +79,8 @@ public class GameScreen extends Screen implements WorldListener {
         bird = new Bird("Jakub", 240, 400);
 
         World world = new World(bird);
-        world.addTubes(new Tube(400, 400, Color.green));
-        world.addTubes(new Tube(600, 300, Color.green));
-        world.addTubes(new Tube(800, 500, Color.green));
 
-        world.addHeart(new Heart(500, 450));
-        world.addHeart(new Heart(700, 600));
+        world.generateRandom();
 
         GameCanvas gamecanvas = new GameCanvas(world);
         gamecanvas.setBounds(0, 0, MainFrame.WIDTH, MainFrame.HEIGHT);
@@ -134,8 +139,8 @@ public class GameScreen extends Screen implements WorldListener {
 
     @Override
     public void outOf() {
-        bird.setPositionY(MainFrame.HEIGHT/2);
-        bird.setSpeed(Bird.JUMP/2);
+        bird.setPositionY(MainFrame.HEIGHT / 2);
+        bird.setSpeed(Bird.JUMP / 2);
         bird.removeLive();
 
     }
