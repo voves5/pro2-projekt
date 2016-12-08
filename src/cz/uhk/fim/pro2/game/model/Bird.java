@@ -113,7 +113,7 @@ public class Bird {
 	}
 
 	public void goUp() {
-
+		speed = JUMP;
 	}
 
 	public boolean isAlive(){
@@ -142,6 +142,7 @@ public class Bird {
 	public void removeLive(){
 		lifes--;
 	}
+
 
 
 }
