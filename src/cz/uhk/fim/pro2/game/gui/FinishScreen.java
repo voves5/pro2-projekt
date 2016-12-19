@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class FinishScreen extends Screen {
 
@@ -39,7 +40,11 @@ public class FinishScreen extends Screen {
                 jButtonRetry.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        mainFrame.setScreen(new GameScreen(mainFrame));
+                        try {
+                            mainFrame.setScreen(new GameScreen(mainFrame));
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
 
                     }
                 });

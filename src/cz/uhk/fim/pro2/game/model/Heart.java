@@ -3,6 +3,7 @@ package cz.uhk.fim.pro2.game.model;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 public class Heart {
 	private float positionX, positionY;
@@ -13,12 +14,12 @@ public class Heart {
 		this.positionY = positionY;
 	}
 
-	public void paint(Graphics g) {
+	public void paint(Graphics g, BufferedImage img){
 		g.setColor(Color.RED);
 		Rectangle rectangle = getRectangle();
 
-		g.fillRect((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(),
-				(int) rectangle.getHeight());
+		g.drawImage(img,(int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(),
+				(int) rectangle.getHeight(),null);
 	}
 
 	public Rectangle getRectangle() {
