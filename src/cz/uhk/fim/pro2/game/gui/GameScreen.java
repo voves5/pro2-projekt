@@ -20,11 +20,13 @@ import cz.uhk.fim.pro2.game.model.World;
 import cz.uhk.fim.pro2.interfaces.WorldListener;
 
 
-public class GameScreen extends Screen implements WorldListener {
+public class GameScreen extends Screen implements WorldListener{
     private JLabel jLabelLifes, jLabelScore;
     private long lastTimeMillis;
     private Timer timer;
     private Bird bird;
+
+
 
     public GameScreen(MainFrame mainFrame) throws IOException {
         super(mainFrame);
@@ -40,12 +42,19 @@ public class GameScreen extends Screen implements WorldListener {
             }
         });
 
+        //WORLD
+        bird = new Bird("Jakub", 240, 400);
+        World world = new World(bird,this);
+        world.generateRandom();
+
         jButtonPause.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (timer.isRunning() == true) {
                     timer.stop();
+                    FinishScreen finishScreen= new FinishScreen(mainFrame,world);
+                    mainFrame.setScreen(finishScreen);
                 } else {
                     lastTimeMillis = System.currentTimeMillis();
                     timer.start();
@@ -64,24 +73,11 @@ public class GameScreen extends Screen implements WorldListener {
         jLabelScore = new JLabel("Score: " + Bird.DEFAULT_SCORE);
         jLabelLifes = new JLabel("Životy: " + Bird.DEFAULT_LIFES);
 
-
-        jLabelScore.setBackground(Color.orange);
-        jLabelScore.setOpaque(true);
-        jLabelLifes.setOpaque(true);
-        jLabelLifes.setBackground(Color.orange);
-
         jLabelScore.setBounds(20, 10, 80, 30);
         jLabelLifes.setBounds(100, 10, 80, 30);
 
         add(jLabelLifes);
         add(jLabelScore);
-
-        //WORLD
-        bird = new Bird("Jakub", 240, 400);
-
-        World world = new World(bird);
-
-        world.generateRandom();
 
         GameCanvas gamecanvas = new GameCanvas(world);
         gamecanvas.setBounds(0, 0, MainFrame.WIDTH, MainFrame.HEIGHT);
@@ -95,7 +91,6 @@ public class GameScreen extends Screen implements WorldListener {
         });
 
         add(gamecanvas);
-
 
         timer = new Timer(20, new ActionListener() {
 
@@ -115,7 +110,6 @@ public class GameScreen extends Screen implements WorldListener {
                     mainFrame.setScreen(finishScreen);
                 }
 
-
                 gamecanvas.repaint();
 
                 lastTimeMillis = currentTimeMillis;
@@ -131,13 +125,13 @@ public class GameScreen extends Screen implements WorldListener {
         bird.removeLive();
         bird.setPositionY(tube.getCenterY());
 
-
     }
 
     @Override
     public void catchHeart(Heart heart) {
         heart.setPositionY(-100);
         bird.catchHeart();
+
     }
 
     @Override
@@ -145,6 +139,5 @@ public class GameScreen extends Screen implements WorldListener {
         bird.setPositionY(MainFrame.HEIGHT / 2);
         bird.setSpeed(Bird.JUMP / 2);
         bird.removeLive();
-
     }
 }

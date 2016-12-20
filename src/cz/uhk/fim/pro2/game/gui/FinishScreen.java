@@ -11,7 +11,6 @@ import java.io.IOException;
 
 public class FinishScreen extends Screen {
 
-
             JLabel jLabelScore;
             JButton jButtonHome;
             JButton jButtonRetry;
@@ -55,7 +54,6 @@ public class FinishScreen extends Screen {
                         mainFrame.setScreen(new HomeScreen(mainFrame));
                     }
                 });
-
 
             }
 

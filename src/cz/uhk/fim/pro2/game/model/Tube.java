@@ -35,8 +35,11 @@ public class Tube {
                 (int) rectangleTop.getWidth(),
                 (int) rectangleTop.getHeight(),null);
 
-        g.fillRect((int) rectangleBottom.getX(), (int) rectangleBottom.getY(), (int) rectangleBottom.getWidth(),
-                (int) rectangleBottom.getHeight());
+        g.drawImage(img,
+                (int)rectangleBottom.getX(),
+                (int)rectangleBottom.getY(),
+                (int)rectangleBottom.getWidth(),
+                (int)rectangleBottom.getHeight(),null);
     }
 
     public Rectangle getTopRectangle() {

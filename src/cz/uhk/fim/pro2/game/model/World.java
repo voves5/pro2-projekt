@@ -19,10 +19,11 @@ public class World {
     private static final int SPACE_BETW_HEARTS = 800;
 
 
-    public World(Bird bird) {
+    public World(Bird bird, WorldListener worldListener) {
         this.bird = bird;
         tubes = new ArrayList<>();
         hearts = new ArrayList<>();
+        this.worldListener = worldListener;
     }
 
     public void update(float deltaTime) {
@@ -86,7 +87,6 @@ public class World {
 
     public void addTubes(Tube tube) {
         tubes.add(tube);
-
     }
 
     public void addHeart(Heart heart) {
@@ -97,7 +97,6 @@ public class World {
         return bird.getName() + " " + tubes.size() + " " + hearts.size();
 
     }
-
     public void generateRandom() {
         for (int i = 0; i < 3; i++) {
             addTubes(new Tube(SPACE_BETW_TUBES + i * SPACE_BETW_TUBES, Tube.getRandomHeight(), Color.green));
@@ -107,8 +106,6 @@ public class World {
 
         generated = true;
     }
-
-
     private void regenerate() {
         for (Tube tube : tubes) {
             if (tube.getPositionX() < -100) {
@@ -125,6 +122,4 @@ public class World {
 
         }
     }
-
-
 }
