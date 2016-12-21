@@ -43,7 +43,7 @@ public class GameScreen extends Screen implements WorldListener{
         });
 
         //WORLD
-        bird = new Bird("Jakub", 240, 400);
+        bird = new Bird("Jakub", 150, 400);
         World world = new World(bird,this);
         world.generateRandom();
 
