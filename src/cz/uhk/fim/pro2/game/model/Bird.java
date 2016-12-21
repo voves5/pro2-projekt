@@ -119,6 +119,7 @@ public class Bird {
 
 	public void goUp() {
 		speed = JUMP;
+
 	}
 
 	public boolean isAlive(){
@@ -148,6 +149,16 @@ public class Bird {
 		lifes--;
 	}
 
+
+
+	// kolize s bonusem
+	public Boolean collideWith(Bonus bonus) {
+		return getRectangle().intersects(bonus.getRectangle());
+	}
+
+	public void catchBonus(){
+		lifes = lifes +10;
+	}
 
 
 }

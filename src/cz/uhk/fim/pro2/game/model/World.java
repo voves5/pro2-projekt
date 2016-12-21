@@ -11,18 +11,20 @@ public class World {
     private Bird bird;
     private List<Tube> tubes;
     private List<Heart> hearts;
+    private List<Bonus> bonuss;
     private WorldListener worldListener;
     private Ground ground;
     private boolean generated = false;
     public static final int SPEED = 100;
     private static final int SPACE_BETW_TUBES = 300;
     private static final int SPACE_BETW_HEARTS = 800;
-
+    private static final int SPACE_BETW_Bonus = 800;
 
     public World(Bird bird, WorldListener worldListener) {
         this.bird = bird;
         tubes = new ArrayList<>();
         hearts = new ArrayList<>();
+        bonuss = new ArrayList<>();
         this.worldListener = worldListener;
     }
 
@@ -43,6 +45,10 @@ public class World {
             }
         }
 
+
+
+
+
         for (Tube tube : tubes) {
             tube.update(deltaTime);
             if (bird.collideWith(tube)) {
@@ -59,8 +65,35 @@ public class World {
                 }
             }
         }
+
+        for (Bonus bonus : bonuss) {
+            bonus.update(deltaTime);
+            if (bird.collideWith(bonus)) {
+
+                worldListener.catchBonus(bonus);
+            }
+        }
+
+
+
+
     }
 
+    public List<Bonus> getBonuss() {
+        return bonuss;
+    }
+
+
+
+    public void setBonuss(List<Bonus> bonuss) {
+        this.bonuss = bonuss;
+    }
+
+
+
+    public void addBonus(Bonus bonuss){
+        getBonuss().add(bonuss);
+    }
     public Bird getBird() {
         return bird;
     }
@@ -93,16 +126,31 @@ public class World {
         hearts.add(heart);
     }
 
+
+
     public String toString() {
         return bird.getName() + " " + tubes.size() + " " + hearts.size();
 
     }
+
+
+
+
+
+
+
+
+
+
+
     public void generateRandom() {
         for (int i = 0; i < 3; i++) {
             addTubes(new Tube(SPACE_BETW_TUBES + i * SPACE_BETW_TUBES, Tube.getRandomHeight(), Color.green));
         }
 
         addHeart(new Heart(SPACE_BETW_HEARTS, Heart.getRandomY()));
+
+        addBonus(new Bonus(SPACE_BETW_Bonus,Bonus.getRandomY()));
 
         generated = true;
     }
@@ -113,6 +161,11 @@ public class World {
                 tube.setHeight(Tube.getRandomHeight());
                 tube.setCounted(false);
             }
+        }for(Bonus bonus : bonuss){
+            if (bonus.getPositionX() < -100) {
+                bonus.setPositionX(bonus.getPositionX() + (hearts.size() + 1) * SPACE_BETW_HEARTS);
+                bonus.setPositionY(Heart.getRandomY());
+            }
         }
         for (Heart heart : hearts) {
             if (heart.getPositionX() < -100) {
@@ -120,6 +173,9 @@ public class World {
                 heart.setPositionY(Heart.getRandomY());
             }
 
+
         }
     }
+
+
 }
